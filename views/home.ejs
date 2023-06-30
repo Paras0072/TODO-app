@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="/css/home.css">
+      <title>Todo App</title>
+  </head>
+  <body>
+      <h1>Todo App</h1>
+      <form action="/add_todo" method="POST" id="todo-form">
+        <label for="task">Description</label>
+        <input type="text" id="todo-input" name="task" placeholder="What do you need to do?" required>
+        <label for="category">Select a category</label>
+        <select id="category-input" name="category" required>
+          <option value="">Choose a category</option>
+          <option value="work">Work</option>
+          <option value="study">Study</option>
+          <option value="personal">Personal</option>
+        </select>
+        <label for="due_date">Due Date</label>
+        <input type="date" id="date-input" name="due_date" required>
+        <button type="submit" id="add-button">Add</button>
+      </form>
+      <div>
+        <ul id="todo-list">
+          <% for (let i of todo_list) { %>
+            <li class="todo">
+              <input type="checkbox" id="checkbox" name="checkbox" >
+              <div class="categoryInput"><%= i.category %></div>
+              <div class="todoInput"><%= i.task %></div>
+              <div class="dateInput"><%= i.due_date %></div>
+              <div class="delete-button">
+                <a href="/delete-todo/?task=<%= i.task%>&category=<%= i.category %>">Delete</a>
+              </div>
+            </li>
+        <% } %>
+        </ul>
+      </div>
+      <script type="text/javascript" src="/js/home.js"></script>
+    </body>
+</html>
